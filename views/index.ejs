@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Product List</title>
+</head>
+<body>
+  <%- include('layouts/header') %>
+
+  <h1>Available Products</h1>
+  <ul>
+    <% products.forEach(product => { %>
+      <li>
+        <strong><%= product.name %></strong> - ₹<%= product.price %>
+        <form action="/cart/add" method="POST">
+          <input type="hidden" name="productId" value="<%= product.id %>">
+          <label>Quantity:</label>
+          <input type="number" name="quantity" min="1" required>
+          <button type="submit">Add to Cart</button>
+        </form>
+      </li>
+    <% }); %>
+  </ul>
+
+  <%- include('layouts/footer') %>
+</body>
+</html>

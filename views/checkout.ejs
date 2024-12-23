@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Invoice</title>
+</head>
+<body>
+  <%- include('layouts/header') %>
+
+  <h1>Order Invoice</h1>
+  <ul>
+    <% order.items.forEach(item => { %>
+      <li>
+        <strong><%= item.productName %></strong> - Quantity: <%= item.quantity %> - ₹<%= item.price * item.quantity %>
+      </li>
+    <% }); %>
+  </ul>
+  <h2>Total Amount: ₹<%= order.total %></h2>
+  <p>Thank you for shopping with us!</p>
+
+  <%- include('layouts/footer') %>
+</body>
+</html>

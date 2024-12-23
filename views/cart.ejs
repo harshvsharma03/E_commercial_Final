@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Cart</title>
+</head>
+<body>
+  <%- include('layouts/header') %>
+
+  <h1>Your Cart</h1>
+  <% if (cart.length === 0) { %>
+    <p>Your cart is empty.</p>
+  <% } else { %>
+    <ul>
+      <% cart.forEach(item => { %>
+        <li>
+          <strong><%= item.productName %></strong> - Quantity: <%= item.quantity %> - ₹<%= item.price * item.quantity %>
+          <form action="/cart/remove/<%= item.productId %>" method="POST">
+            <button type="submit">Remove</button>
+          </form>
+        </li>
+      <% }); %>
+    </ul>
+    <h2>Total: ₹<%= total %></h2>
+    <form action="/checkout" method="POST">
+      <label>Discount Code:</label>
+      <input type="text" name="discountCode">
+      <button type="submit">Checkout</button>
+    </form>
+  <% } %>
+
+  <%- include('layouts/footer') %>
+</body>
+</html>
